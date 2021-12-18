@@ -2,10 +2,10 @@ const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const schema = require('./schema/schema');
 const mongoose = require('mongoose');
-
+const { setup } = require('../config.js');
 const app = express();
 
-mongoose.connect('mongodb+srv://boss:pass123@cluster0.p8p18.mongodb.net/bookauthors?retryWrites=true&w=majority')
+mongoose.connect(setup);
 mongoose.connection.once('open', () => {
     console.log('connected to database');
 })
