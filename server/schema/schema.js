@@ -50,10 +50,9 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: { id: { type: GraphQLID } },
+            args: { genre: { type: GraphQLString } },
             resolve(parent, args){
-                // code to get data from db / other source
-                // return _.find(books, { id: args.id });
+                return Book.findOne({genre: args.genre}).exec();
             }
         },
         author: {
