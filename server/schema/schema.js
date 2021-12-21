@@ -49,7 +49,7 @@ const RootQuery = new GraphQLObjectType({
     fields: {
         book: {
             type: BookType,
-            args: { genre: { type: GraphQLString } },
+            args: { id: { type: GraphQLID } },
             resolve(parent, args){
                 return Book.findById(args.id);
             }
