@@ -8,7 +8,8 @@ import {
 } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://localhost:4000/graphql',
+  cache: new InMemoryCache()
 })
 
 
@@ -17,9 +18,9 @@ function App() {
     <ApolloProvider client={client}>
     <div id="main">
       <header className="GraphQL">
+      </header>
       <h1>Sam's Book List</h1>
       <BookList />
-      </header>
     </div>
     </ApolloProvider>
   );
