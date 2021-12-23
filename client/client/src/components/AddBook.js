@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useQuery } from '@apollo/client';
-import { getAuthorsQuery } from '../queries/queries.js';
+import { useQuery, useMutation } from '@apollo/client';
+import { getAuthorsQuery, addBookMutation } from '../queries/queries.js';
 
 
 const AddBook = () => {
@@ -13,9 +13,25 @@ const AddBook = () => {
 
   const { loading, error, data } = useQuery(getAuthorsQuery);
 
-  const handleOnSubmit = e => {
-    e.preventDefault();
 
+  const [addBook] = useMutation(addBookMutation)
+
+
+  const handleOnSubmit = async (e) => {
+    e.preventDefault();
+    console.log(author);
+
+    try {
+      await addBook({
+        variables: {
+          name: author.name,
+          genre: author.genre,
+          authorId: author.id
+        }
+      });
+    } catch(err) {
+      console.log(`ERROR ON CLIENT: ${err.message}`)
+    }
   }
 
   if ( loading ) return 'Loading...';
@@ -23,7 +39,7 @@ const AddBook = () => {
 
   return (
     <form id="add-book"
-    onSubmit={() => handleOnSubmit()}
+    onSubmit={(e) => handleOnSubmit(e)}
     >
       <div className="field">
         <label>Book name:</label>
@@ -44,7 +60,7 @@ const AddBook = () => {
           >
             <option>Select author</option>
             {data.authors.map( author =>
-            <option key={author.id}>{author.name}</option>)}
+            <option key={author.id} value={author.id}>{author.name}</option>)}
           </select>
       </div>
       <button>+</button>
