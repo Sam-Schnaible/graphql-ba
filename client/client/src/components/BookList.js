@@ -15,12 +15,14 @@ const BookList = () => {
 
   if ( loading ) return 'Loading...';
   if ( error ) return  `Error! ${error.message}`;
-  console.log(data);
+  console.log(data.books);
   return (
     <div>
       <ul id="book-list">
+        {data.books.map( (book, idx) =>
 
-        <li>Book name</li>
+          <li key={idx}>{book.name}</li>
+        )}
       </ul>
     </div>
   )
