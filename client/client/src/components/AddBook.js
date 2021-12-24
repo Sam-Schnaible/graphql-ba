@@ -20,13 +20,13 @@ const AddBook = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(author);
-
+    const { name, genre, authorId } = author;
     try {
       await addBook({
         variables: {
-          name: author.name,
-          genre: author.genre,
-          authorId: author.id
+          name,
+          genre,
+          authorId
         }
       });
     } catch(err) {
