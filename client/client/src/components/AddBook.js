@@ -13,13 +13,10 @@ const AddBook = () => {
 
   const { loading, error, data } = useQuery(getAuthorsQuery);
 
-
   const [addBook] = useMutation(addBookMutation, {refetchQueries: [getBooksQuery]})
-
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(author);
     const { name, genre, authorId } = author;
     try {
       await addBook({
