@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { getAuthorsQuery, addBookMutation } from '../queries/queries.js';
+import { getAuthorsQuery, addBookMutation, getBooksQuery } from '../queries/queries.js';
 
 
 const AddBook = () => {
@@ -14,7 +14,7 @@ const AddBook = () => {
   const { loading, error, data } = useQuery(getAuthorsQuery);
 
 
-  const [addBook] = useMutation(addBookMutation)
+  const [addBook] = useMutation(addBookMutation, {refetchQueries: [getBooksQuery]})
 
 
   const handleOnSubmit = async (e) => {
