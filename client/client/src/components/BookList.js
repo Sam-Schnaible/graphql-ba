@@ -16,10 +16,10 @@ const BookList = () => {
     <div>
       <ul id="book-list">
         {data.books.map( book =>
-          <li key={book.id} onClick={(e) => {setSelected(book.id)}}>{book.name}</li>
+          <li key={book.id} onClick={(e) => setSelected(book.id)}>{book.name}</li>
         )}
       </ul>
-      <BookDetails bookId={selected} />
+      <BookDetails id={selected} />
     </div>
   )
 }

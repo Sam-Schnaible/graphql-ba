@@ -26,6 +26,11 @@ const AddBook = () => {
           authorId
         }
       });
+      setAuthor({
+        name: '',
+        genre: '',
+        authorId: ''
+      })
     } catch(err) {
       console.log(`ERROR ON CLIENT: ${err.message}`)
     }
@@ -40,13 +45,13 @@ const AddBook = () => {
     >
       <div className="field">
         <label>Book name:</label>
-          <input type="text"
+          <input type="text" value={author.name}
           onChange={(e) => setAuthor({...author, name: e.target.value})}
           />
       </div>
       <div className="field">
         <label>Genre:</label>
-          <input type="text"
+          <input type="text" value={author.genre}
           onChange={(e) => setAuthor({...author, genre: e.target.value})}
           />
       </div>
