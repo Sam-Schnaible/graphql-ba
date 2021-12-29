@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { getBookQuery } from '../queries/queries.js';
 
-const BookDetails = () => {
+const BookDetails = ({ bookId}) => {
 
   const { loading, error, data } = useQuery(getBookQuery);
 
