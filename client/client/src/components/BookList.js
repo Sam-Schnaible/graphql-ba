@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { getBooksQuery } from '../queries/queries.js';
-
+import BookDetails from './BookDetails.js';
 
 const BookList = () => {
 
@@ -17,6 +17,7 @@ const BookList = () => {
           <li key={book.id}>{book.name}</li>
         )}
       </ul>
+      <BookDetails />
     </div>
   )
 }
